@@ -27,6 +27,8 @@ $(document).ready(function() {
         // when a film is selected from the drop down, query SWAPI for title
         // to get characters
         $("#film-titles li").click(function(e) {
+            // clear old results
+            $("#sw-table").empty();
             $("#ep-title").html($(this).html());
             var titleUrl = $(this).find('data').attr('value');
             titleUrl = secureUrl(titleUrl);
@@ -50,13 +52,11 @@ $(document).ready(function() {
 
     // function to make table of character names and starships
     function createCharacterTable(charArr) {
-        // clear old results
-        $("#sw-table").html("");
         // make axaj call for each character
         $.each(charArr, function(index, charUrl) {
             charUrl = secureUrl(charUrl);
             $.getJSON(charUrl, function(char) {
-                 // add a row with character name and starships if not removed
+                // add a row with character name and starships if not removed
                 $("#sw-table").append(makeRow(char.name, char.starships));
             });
         });
@@ -69,12 +69,13 @@ $(document).ready(function() {
         if (!removeCharList.find(function(char) {
                 return char === shipDataId;
             })) {
-            $("#sw-table").append('<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span></a> ' + charName + '</td><td id=' + shipDataId + '></td></tr>');
+            $("#sw-table").append('<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span></a> ' +
+                charName + '</td><td id=' + shipDataId + '></td><td class="loading">Loading ...</td></tr>');
         }
-        // turn "x" icon red when clicked and add character to
+        // turn "x" icon red when clicked, remove element, and add character to
         // filter list to remove from future queries
         $("#" + shipDataId).parent().find('span').click(function(e) {
-            $(this).css("color", "red");
+            //$(this).css("color", "red");
             // add character to remove list only if they aren't there
             if (!removeCharList.find(function(char) {
                     return char === shipDataId;
@@ -82,6 +83,8 @@ $(document).ready(function() {
                 removeCharList.push(shipDataId);
                 console.log(removeCharList);
             }
+            // remove character from table if "x" is clicked
+            $("#" + shipDataId).parent().remove();
         });
         // add list of starships to row if they have any
         if (shipArr.length !== 0) {
@@ -113,5 +116,13 @@ $(document).ready(function() {
 
         return ships;
     }
+
+    $(document)
+        .ajaxStart(function() {
+            $(".loading").show();
+        })
+        .ajaxStop(function() {
+            $(".loading").hide();
+        });
 
 });
