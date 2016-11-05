@@ -67,7 +67,19 @@
         </table>
     </div>
 
-    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        $(document)
+            .ajaxStart(function() {
+                $(".loading").show();
+            })
+            .ajaxStop(function() {
+                $(".loading").hide();
+            });
+        window.onload = function() {
+            fwTest.fillSelect();
+        };
+    </script>
 </body>
 
 </html>
