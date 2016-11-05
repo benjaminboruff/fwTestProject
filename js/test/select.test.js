@@ -9,7 +9,7 @@ QUnit.module("fwTest async method tests", {
         }, 1000);
     });
 
-    QUnit.test("The first film released should be 'A New Hope", function(assert) {
+    QUnit.test("First film in array should be 'A New Hope'", function(assert) {
         var done = assert.async();
         setTimeout(function() {
             assert.equal(fwTest.swFilms[0].title, "A New Hope");
@@ -17,7 +17,7 @@ QUnit.module("fwTest async method tests", {
         }, 1000);
     });
 
-    QUnit.test("The last film released should be 'The Force Awakens'", function(assert) {
+    QUnit.test("Last film should be 'The Force Awakens'", function(assert) {
         var done = assert.async();
         setTimeout(function() {
             assert.equal(fwTest.swFilms[6].title, "The Force Awakens");
@@ -25,17 +25,15 @@ QUnit.module("fwTest async method tests", {
         }, 1000);
     });
 
-    QUnit.test("Selected episode title should be inserted into the DOM above table", function(assert) {
-
+    QUnit.test("First episode title in the DOM's dropdown list should be 'A New Hope'", function(assert) {
+        console.log($("#ep-title").html());
+        // get html from first child of dropdown list
         var done = assert.async();
         setTimeout(function() {
-            console.log($("#ep-title").html());
-
-            // get html from first child of dropdown list
             var epTitle = $("#film-titles data").html();
             assert.equal(epTitle, "A New Hope");
             done();
-        }, 1000);
+        }, 5000);
 
 
     });
