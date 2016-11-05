@@ -68,7 +68,8 @@ var fwTest = {
         });
     },
 
-    //*** return string of html to insert into table row
+    //*** insert character name and list of ships into table row
+    //*** if not in "removed" array
     makeRow: function(charName, shipArr) {
         var shipDataId = charName.split(" ").join("-");
         // only add charactes that are not in the removed list
