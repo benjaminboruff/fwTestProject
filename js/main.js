@@ -52,7 +52,6 @@ var fwTest = {
                 });
 
             });
-        //*** end async
     },
 
     //*** I develope from https, so I have to change the url's http to https.
