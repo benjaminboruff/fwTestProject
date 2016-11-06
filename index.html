@@ -65,13 +65,6 @@
 
     <script src="js/main.js"></script>
     <script>
-        $(document)
-            .ajaxStart(function() {
-                $(".loading").show();
-            })
-            .ajaxStop(function() {
-                $(".loading").hide();
-            });
         window.onload = function() {
             fwTest.fillSelect();
         };
