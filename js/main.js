@@ -43,8 +43,8 @@ var fwTest = {
                     titleUrl = fwTest.secureUrl(titleUrl);
                     var characters = [];
                     //console.log(titleUrl);
-                    $.getJSON(titleUrl)
-                        .done(function(data) {
+                    $.when($.getJSON(titleUrl))
+                        .then(function(data) {
                             characters = data.characters;
                             //console.log(characters);
                             fwTest.createCharacterTable(characters);
