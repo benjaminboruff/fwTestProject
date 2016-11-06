@@ -105,13 +105,28 @@ var fwTest = {
                 $.when.apply(this, promises).then(function() {
                     var allShips = Array.from(arguments);
                     allShips.forEach(function(ship) {
-                        console.log(ship.name);
+                        //console.log(ship.name);
                         fwTest.ships.push(ship.name);
                     });
                     $("#sw-table").prepend('<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span></a> ' +
                         charName + '</td><td id=' + shipDataId + '>' + fwTest.ships.join(", ") + '</td></tr>');
                     //$("#" + shipDataId).html(fwTest.ships.join(", "));
                     fwTest.ships = [];
+                    // turn "x" icon red when clicked, remove element, and add character to
+                    // filter list to remove from future queries
+                    $("#" + shipDataId).parent().find('span').click(function(e) {
+                        //$(this).css("color", "red");
+                        // add character to remove list only if they aren't there
+                        if (!fwTest.removeCharList.find(function(char) {
+                                return char === shipDataId;
+                            })) {
+                            fwTest.removeCharList.push(shipDataId);
+                            console.log(fwTest.removeCharList);
+                        }
+                        // remove character from table if "x" is clicked
+                        $("#" + shipDataId).parent().remove();
+                    });
+
                 });
             }
             else {
