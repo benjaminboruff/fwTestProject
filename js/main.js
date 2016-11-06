@@ -104,12 +104,7 @@ var fwTest = {
         }
     },
 
-    /*** BOTTLENECK!!!!
-     return a string of comma separated ships
-     I turned off async to make this do-able in a short amount
-     of time. This needs to be refactored into an async solution
-     to improve perfomance; the UI suffers for it, otherwise.
-    ***/
+    // get ships and insert them into table
     getShips: function(shipDataId, shipArr) {
         var promises = [];
 
