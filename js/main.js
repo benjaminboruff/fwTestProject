@@ -84,7 +84,8 @@ var fwTest = {
         if (!fwTest.removeCharList.find(function(char) {
                 return char === shipDataId;
             })) {
-
+            // if the character has a ships array, get ships
+            // and include in row
             if (shipsArray.length !== 0) {
                 //console.log(charName + " has ships!");
                 // function that returns an ajax promise
@@ -112,41 +113,32 @@ var fwTest = {
                         charName + '</td><td id=' + shipDataId + '>' + fwTest.ships.join(", ") + '</td></tr>');
                     //$("#" + shipDataId).html(fwTest.ships.join(", "));
                     fwTest.ships = [];
-                    // turn "x" icon red when clicked, remove element, and add character to
-                    // filter list to remove from future queries
-                    $("#" + shipDataId).parent().find('span').click(function(e) {
-                        //$(this).css("color", "red");
-                        // add character to remove list only if they aren't there
-                        if (!fwTest.removeCharList.find(function(char) {
-                                return char === shipDataId;
-                            })) {
-                            fwTest.removeCharList.push(shipDataId);
-                            console.log(fwTest.removeCharList);
-                        }
-                        // remove character from table if "x" is clicked
-                        $("#" + shipDataId).parent().remove();
-                    });
-
+                    fwTest.removeCharOnClick(shipDataId);
                 });
             }
             else {
+                // the character has no ships array
                 $("#sw-table").prepend('<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span></a> ' +
                     charName + '</td><td id=' + shipDataId + '></td></tr>');
+                fwTest.removeCharOnClick(shipDataId);
             }
         }
+    },
+    //*** remove character row if "x" icon clicked and add to "removed list"
+    removeCharOnClick: function(id) {
         // turn "x" icon red when clicked, remove element, and add character to
         // filter list to remove from future queries
-        $("#" + shipDataId).parent().find('span').click(function(e) {
+        $("#" + id).parent().find('span').click(function(e) {
             //$(this).css("color", "red");
             // add character to remove list only if they aren't there
             if (!fwTest.removeCharList.find(function(char) {
-                    return char === shipDataId;
+                    return char === id;
                 })) {
-                fwTest.removeCharList.push(shipDataId);
+                fwTest.removeCharList.push(id);
                 console.log(fwTest.removeCharList);
             }
             // remove character from table if "x" is clicked
-            $("#" + shipDataId).parent().remove();
+            $("#" + id).parent().remove();
         });
     }
 
