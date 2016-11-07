@@ -7,18 +7,40 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.1.css">
     <script src="https://code.jquery.com/qunit/qunit-2.0.1.js"></script>
-    <script src="../main.js"></script>
-    <script src="select.test.js"></script>
+    <script src="jquery.mockjax.min.js"></script>
 </head>
 
 <body>
     <div id="qunit"></div>
     <div id="qunit-fixture">
+        <div class="dropdown">
+
+            <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Select Star Wars Film
+        <span class="caret"></span></button>
+            <ul class="dropdown-menu" id="film-titles">
+                <!--<li><a href="#">Populate me with film names!</a></li>-->
+            </ul>
+        </div>
+
+        <br>
+
         <h3 id="ep-title">Star Wars Episode</h3>
-        <ul class="dropdown-menu" id="film-titles">
-            <!--<li><a href="#">Populate me with film names!</a></li>-->
-        </ul>
+        <p id="swdata"></p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Starships</th>
+                </tr>
+            </thead>
+            <tbody id="sw-table">
+                <tr>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <script src="../main.js"></script>
+    <script src="select.test.js"></script>
 </body>
 
 </html>
