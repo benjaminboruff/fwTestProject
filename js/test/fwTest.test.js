@@ -16,7 +16,7 @@ QUnit.module("fwTest module ajax-JS method tests", {
             // variables that must be reset after each test
             fwTest.swFilms = [];
             fwTest.removeCharList = [];
-            fwTest.ships = [];
+            //fwTest.ships = [];
             $.mockjax.clear();
         }
     },
@@ -35,7 +35,7 @@ QUnit.module("fwTest module ajax-JS method tests", {
             setTimeout(function() {
                 assert.equal(fwTest.swFilms.length, 7);
                 done();
-            }, 2000);
+            }, 3000);
             $.mockjax.clear();
         });
 
@@ -72,7 +72,7 @@ QUnit.module("fwTest module ajax-JS method tests", {
                 assert.equal(fwTest.swFilms[5].title, "Revenge of the Sith");
                 assert.equal(fwTest.swFilms[6].title, "The Force Awakens");
                 done();
-            }, 2000);
+            }, 3000);
         });
     }
 );
@@ -86,6 +86,7 @@ QUnit.module("fwTest module DOM tests", {
         },
         after: function() {
             fwTest.swFilms = [];
+            fwTest.removeCharList = [];
             $.mockjax.clear();
         }
     },
@@ -109,7 +110,7 @@ QUnit.module("fwTest module DOM tests", {
                 assert.equal(ep3Title, '<data value="http://swapi.co/api/films/6/">Revenge of the Sith</data>');
                 assert.equal(ep7Title, '<data value="http://swapi.co/api/films/7/">The Force Awakens</data>');
                 done();
-            }, 2000);
+            }, 3000);
         });
     }
 );
