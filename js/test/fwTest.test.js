@@ -121,51 +121,11 @@ QUnit.module("fwTest module DOM tests",
 
 
         QUnit.test("Selecting 'A New Hope' from dropdown should produce table" +
-            " with all characters from that film (no characters removed)",
+            " with all characters from the film (no characters removed)",
             function(assert) {
-                $.mockjax({
-                    url: "https://swapi.co/api/films/1/",
-                    contentType: "json",
-                    responseText: {
-                        // A click on Episode "A New Hope" results in
-                        // an ajax call that returns the following array
-                        "characters": [
-                            "http://swapi.co/api/people/1/",
-                            "http://swapi.co/api/people/2/",
-                            "http://swapi.co/api/people/3/",
-                            "http://swapi.co/api/people/4/",
-                            "http://swapi.co/api/people/5/",
-                            "http://swapi.co/api/people/6/",
-                            "http://swapi.co/api/people/7/",
-                            "http://swapi.co/api/people/8/",
-                            "http://swapi.co/api/people/9/",
-                            "http://swapi.co/api/people/10/",
-                            "http://swapi.co/api/people/12/",
-                            "http://swapi.co/api/people/13/",
-                            "http://swapi.co/api/people/14/",
-                            "http://swapi.co/api/people/15/",
-                            "http://swapi.co/api/people/16/",
-                            "http://swapi.co/api/people/18/",
-                            "http://swapi.co/api/people/19/",
-                            "http://swapi.co/api/people/81/"
-                        ]
-                    }
-                });
+                // mockjax will not work here due to many nested ajax calls
+                // so these are real ...
 
-                $.mockjax({
-                    url: "https://swapi.co/api/people/1/",
-                    contentType: "json",
-                    responseText: {
-                        // A click on Episode "A New Hope" results in
-                        // an ajax call that returns the following array
-                        "name": "Luke Skywalker",
-                        "starships": [
-                            "http://swapi.co/api/starships/12/",
-                            "http://swapi.co/api/starships/22/"
-                        ]
-                    }
-                });
-                
                 fwTest.fillSelect();
 
                 var done_1 = assert.async();
@@ -176,16 +136,33 @@ QUnit.module("fwTest module DOM tests",
                     // wait for it some more ...
                     var done_2 = assert.async();
                     setTimeout(function() {
-                        var rowLukeSkywalker = $("#Luke-Skywalker").parent()[0].outerHTML;
-                        assert.equal(rowLukeSkywalker,
+                        var rowSkywalker = $("#Luke-Skywalker").parent()[0].outerHTML;
+                        var rowPorkins = $("#Jek-Tono-Porkins").parent()[0].outerHTML;
+                        var rowAntilles = $("#Wedge-Antilles").parent()[0].outerHTML;
+                        var rowSolo = $("#Han-Solo").parent()[0].outerHTML;
+                        var rowChewbacca = $("#Chewbacca").parent()[0].outerHTML;
+                        var rowDarklighter = $("#Biggs-Darklighter").parent()[0].outerHTML;
+                        var rowKenobi = $("#Obi-Wan-Kenobi").parent()[0].outerHTML;
+                        var rowVader = $("#Darth-Vader").parent()[0].outerHTML;
+                        var rowTiure = $("#Jabba-Desilijic-Tiure").parent()[0].outerHTML;
+                        var rowRAntilles = $("#Raymus-Antilles").parent()[0].outerHTML;
+                        var rowGreedo = $("#Greedo").parent()[0].outerHTML;
+                        var rowD4 = $("#R5-D4").parent()[0].outerHTML;
+                        var rowTarkin = $("#Wilhuff-Tarkin").parent()[0].outerHTML;
+                        var rowLars = $("#Owen-Lars").parent()[0].outerHTML;
+                        var rowOrgana = $("#Leia-Organa").parent()[0].outerHTML;
+                        var rowC3PO = $("#C-3PO").parent()[0].outerHTML;
+                        var rowIars = $("#Beru-Whitesun-lars").parent()[0].outerHTML;
+                        var rowD2 = $("#R2-D2").parent()[0].outerHTML;
+                        assert.equal(rowSkywalker,
                             '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
                             '</a> Luke Skywalker</td><td id="Luke-Skywalker">X-wing, Imperial shuttle</td></tr>');
                         done_2();
-                    }, 5000);
+                    }, 8000);
                 }, 1000);
                 fwTest.swFilms = [];
                 fwTest.ships = [];
-                $.mockjax.clear();
+                //$.mockjax.clear();
             }
         );
     }
