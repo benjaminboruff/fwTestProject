@@ -121,11 +121,10 @@ QUnit.module("fwTest module DOM tests",
 
 
         QUnit.test("Selecting 'A New Hope' from dropdown should produce table" +
-            " with all characters from the film (no characters removed)",
+            " with all characters from the film with correct starships (no characters removed)",
             function(assert) {
                 // mockjax will not work here due to many nested ajax calls
                 // so these are real ...
-
                 fwTest.fillSelect();
 
                 var done_1 = assert.async();
@@ -152,13 +151,66 @@ QUnit.module("fwTest module DOM tests",
                         var rowLars = $("#Owen-Lars").parent()[0].outerHTML;
                         var rowOrgana = $("#Leia-Organa").parent()[0].outerHTML;
                         var rowC3PO = $("#C-3PO").parent()[0].outerHTML;
-                        var rowIars = $("#Beru-Whitesun-lars").parent()[0].outerHTML;
+                        var rowlars = $("#Beru-Whitesun-lars").parent()[0].outerHTML;
                         var rowD2 = $("#R2-D2").parent()[0].outerHTML;
                         assert.equal(rowSkywalker,
                             '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
                             '</a> Luke Skywalker</td><td id="Luke-Skywalker">X-wing, Imperial shuttle</td></tr>');
+                        assert.equal(rowPorkins,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Jek Tono Porkins</td><td id="Jek-Tono-Porkins">X-wing</td></tr>');
+                        assert.equal(rowAntilles,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Wedge Antilles</td><td id="Wedge-Antilles">X-wing</td></tr>');
+                        assert.equal(rowSolo,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Han Solo</td><td id="Han-Solo">Millennium Falcon, Imperial shuttle</td></tr>');
+                        assert.equal(rowChewbacca,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Chewbacca</td><td id="Chewbacca">Millennium Falcon, Imperial shuttle</td></tr>');
+                        assert.equal(rowDarklighter,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Biggs Darklighter</td><td id="Biggs-Darklighter">X-wing</td></tr>');
+                        assert.equal(rowKenobi,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Obi-Wan Kenobi</td><td id="Obi-Wan-Kenobi">Jedi starfighter, Trade' +
+                            ' Federation cruiser, Naboo star skiff, Jedi Interceptor, Belbullab-22 starfighter</td></tr>');
+                        assert.equal(rowVader,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Darth Vader</td><td id="Darth-Vader">TIE Advanced x1</td></tr>');
+                        assert.equal(rowTiure,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Jabba Desilijic Tiure</td><td id="Jabba-Desilijic-Tiure"></td></tr>');
+                        assert.equal(rowRAntilles,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Raymus Antilles</td><td id="Raymus-Antilles"></td></tr>');
+                        assert.equal(rowGreedo,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Greedo</td><td id="Greedo"></td></tr>');
+                        assert.equal(rowD4,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> R5-D4</td><td id="R5-D4"></td></tr>');
+                        assert.equal(rowTarkin,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Wilhuff Tarkin</td><td id="Wilhuff-Tarkin"></td></tr>');
+                        assert.equal(rowLars,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Owen Lars</td><td id="Owen-Lars"></td></tr>');
+                        assert.equal(rowOrgana,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Leia Organa</td><td id="Leia-Organa"></td></tr>');
+                        assert.equal(rowC3PO,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> C-3PO</td><td id="C-3PO"></td></tr>');
+                        assert.equal(rowlars,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> Beru Whitesun lars</td><td id="Beru-Whitesun-lars"></td></tr>');
+                        assert.equal(rowD2,
+                            '<tr><td><a href="#"><span class="glyphicon glyphicon-remove"></span>' +
+                            '</a> R2-D2</td><td id="R2-D2"></td></tr>');
+
                         done_2();
-                    }, 8000);
+                    }, 10000);
                 }, 1000);
                 fwTest.swFilms = [];
                 fwTest.ships = [];
