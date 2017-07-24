@@ -42,7 +42,7 @@ var fwTest = {
                     // set title above table
                     $("#ep-title").html($(this).html());
                     var titleUrl = $(this).find('data').attr('value');
-                    titleUrl = fwTest.secureUrl(titleUrl);
+                    //titleUrl = fwTest.secureUrl(titleUrl);
                     //console.log(titleUrl);
                     $.when($.getJSON(titleUrl))
                         .then(function(data) {
@@ -65,7 +65,7 @@ var fwTest = {
     createCharacterTable: function(charArray) {
         // make axaj call for each character
         $.each(charArray, function(index, charUrl) {
-            charUrl = fwTest.secureUrl(charUrl);
+            //charUrl = fwTest.secureUrl(charUrl);
             $.when($.getJSON(charUrl))
                 .then(function(char) {
                     // add a row with character name and starships if not
@@ -96,7 +96,8 @@ var fwTest = {
                 }
 
                 for (var i = 0; i < shipsArray.length; i++) {
-                    var starshipUrl = fwTest.secureUrl(shipsArray[i]);
+                    //var starshipUrl = fwTest.secureUrl(shipsArray[i]);
+                    var starshipUrl = shipsArray[i];
                     //console.log(starshipUrl);
                     // push ajax promises into array
                     promises.push(fetchShips(starshipUrl));
